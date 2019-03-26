@@ -1,28 +1,31 @@
 // 1) Variables
 const boton = $("#boton");
 const contenido = $("#contenido");
+const numero = $("#numero");
+const boton2 = $("#boton2");
 
 // 2) Funciones
 
-const LlamarAPI = e => {
-  e.preventDefault();
+const LlamarAPI = urlpersonlizada => {
   $.ajax({
-    url:
-      "https://randomuser.me/api/?nat=es&inc=gender,name,nat,picture&results=5",
+    url: urlpersonlizada,
     dataType: "json",
     success: function(data) {
       console.log(data);
-
-      let micontenido =
-        /* html */
-        ` 
-        <img class="rounded-circle" src="${data.results[0].picture.large}" >
+      let micontenido = "";
+      for (let i = 0; i < data.results.length; i++) {
+        micontenido +=
+          /* html */
+          ` 
+        <img class="rounded-circle" src="${data.results[i].picture.large}" >
         <br>
-        <p>${data.results[0].name.title}. 
-            ${data.results[0].name.first}
-            ${data.results[0].name.last}
+        <p>${data.results[i].name.title}. 
+            ${data.results[i].name.first}
+            ${data.results[i].name.last}
         </p>
         `;
+      }
+
       $("#datos").fadeOut("slow", function() {
         $(this)
           //.css("display", "none")
@@ -37,9 +40,26 @@ const LlamarAPI = e => {
   });
 };
 
+const PrepararURL = e => {
+  e.preventDefault();
+  console.log(e.target.id);
+  let miurl;
+  if (e.target.id === "boton") {
+    miurl = "https://randomuser.me/api/?nat=es&inc=gender,name,nat,picture";
+  }
+  if (e.target.id === "boton2") {
+    let n = numero.val();
+    miurl =
+      "https://randomuser.me/api/?nat=es&inc=gender,name,nat,picture&results=" +
+      n;
+  }
+  LlamarAPI(miurl);
+};
+
 // 3) Eventos
 /* $("#boton").click(function(e) {
   e.preventDefault();
   LlamarAPI();
 }); */
-boton.on("click", LlamarAPI);
+boton.on("click", PrepararURL);
+boton2.on("click", PrepararURL);
