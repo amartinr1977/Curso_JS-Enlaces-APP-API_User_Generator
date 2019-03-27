@@ -16,36 +16,48 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12">
-          <button class="btn btn-primary" id="boton">
-            Llamar API
-          </button>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-12">
+        <div class="col-4">
           <input
             type="number"
             id="numero"
             class="form-control"
             placeholder="Indica un numero de usuarios a solicitar"
           />
-          <button class="btn btn-primary" id="boton2">
-            Llamar API para varios Usuarios
+        </div>
+        <div class="col-2">
+          <button class="btn btn-primary" id="boton">
+            Llamar API
           </button>
         </div>
+        <div class="col-1">
+          <input
+            type="text"
+            id="numerousuarios"
+            class="form-control"
+            readonly
+          />
+        </div>
       </div>
-      <div class="row">
+      <div class="row my-2">
+        <div class="col-12">
+          <input
+            type="text"
+            id="busqueda"
+            class="form-control"
+            placeholder="Indica el patrón de busqueda de Usuarios"
+          />
+        </div>
+      </div>
+      <div class="row justify-content-center">
         <div
           id="contenido"
-          class="col-12 text-center p-5 mt-5"
-          style="background-color: aquamarine; height: 240px"
-        >
-          <span id="datos" class="datos"> </span>
-        </div>
+          class="col-8 text-center p-2 mt-2"
+          style="background-color: aquamarine"
+        ></div>
       </div>
     </div>
     <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
     <script src="js/mi.js"></script>
   </body>
 </html>
